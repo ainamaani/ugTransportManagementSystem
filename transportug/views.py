@@ -9,4 +9,7 @@ def home(request):
     })
 
 def district(request,region):
-    return render(request,'region.html')
+    buses = Bus.objects.filter(mainOffices=region)
+    return render(request,'region.html',{
+        'buses':buses
+    })

@@ -15,14 +15,14 @@ class Bus(models.Model):
     company = models.ForeignKey(BusCompany,on_delete = models.CASCADE)
     numberPlate = models.CharField(max_length=30)
     mainOffices = models.CharField(max_length=30)
-    busImage = models.ImageField(null=True,upload_to='buses')
+    # busImage = models.ImageField(null=True,upload_to='buses')
     destination = models.ForeignKey(BusCompany,related_name='regions',on_delete=models.DO_NOTHING)
     travelTime = models.TimeField()
     seats = models.IntegerField()
     status = models.CharField(max_length=30)
 
     def __str__(self) -> str:
-        return self.company
+        return self.mainOffices
 
 class Prices(models.Model):
     startLocation = models.ForeignKey(BusCompany,on_delete=models.DO_NOTHING)
