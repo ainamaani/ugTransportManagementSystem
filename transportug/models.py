@@ -5,7 +5,6 @@ from django.db import models
 class BusCompany(models.Model):
     companyName = models.CharField(max_length=30)
     region = models.CharField(max_length=30)
-    busImage = models.ImageField(null=True,upload_to='buses')
     shiftsTo = models.IntegerField()
     shiftsFrom = models.IntegerField()
 
@@ -16,6 +15,7 @@ class Bus(models.Model):
     company = models.ForeignKey(BusCompany,on_delete = models.CASCADE)
     numberPlate = models.CharField(max_length=30)
     mainOffices = models.CharField(max_length=30)
+    busImage = models.ImageField(null=True,upload_to='buses')
     destination = models.ForeignKey(BusCompany,related_name='regions',on_delete=models.DO_NOTHING)
     travelTime = models.TimeField()
     seats = models.IntegerField()

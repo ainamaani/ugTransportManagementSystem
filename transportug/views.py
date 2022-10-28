@@ -1,5 +1,9 @@
 from django.shortcuts import render
+from .models import Bus,BusCompany,Prices
 
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    companies = BusCompany.objects.all()
+    return render(request,'home.html',{
+        'companies' : companies
+    })

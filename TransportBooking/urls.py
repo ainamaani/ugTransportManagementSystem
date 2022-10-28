@@ -18,5 +18,5 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('transp/',include('transportug.urls'))
+    path('ugtransport/',include('transportug.urls'))
 ]
