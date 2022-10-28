@@ -7,3 +7,6 @@ def home(request):
     return render(request,'home.html',{
         'companies' : companies
     })
+
+def district(request,region):
+    return render(request,'region.html')
