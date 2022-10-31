@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Region</title>
+    <title>BusCompany</title>
 </head>
 <body>
-    {% for bus in buses %}
-        {{bus.company}}
-        <a href="{% url 'company' bus.company %}">{{bus.company}}</a>
+    Heyya
+    {% for buscompany in buscompanies %}
+        {{buscompany.seats}}
+
+        <a href="{% url 'busShift' buscompany.id %}  ">Book</a>
+        
     {% endfor %}
 </body>
 </html>

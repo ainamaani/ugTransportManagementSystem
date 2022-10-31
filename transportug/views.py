@@ -13,3 +13,16 @@ def district(request,region):
     return render(request,'region.html',{
         'buses':buses
     })
+
+def company(request,company):
+    companydetails = Bus.objects.filter(company=company)
+    return render(request,'busCompany.html',{
+        'buscompanies' : companydetails
+    })
+
+def busShift(request,id):
+    shift = Bus.objects.get(id=id)
+    return render(request,'busShift.html',{
+       'shift': shift,
+       'shift_id' : id
+    })

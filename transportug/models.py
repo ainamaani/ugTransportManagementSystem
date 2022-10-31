@@ -12,7 +12,7 @@ class BusCompany(models.Model):
         return self.companyName
 
 class Bus(models.Model):
-    company = models.ForeignKey(BusCompany,on_delete = models.CASCADE)
+    company = models.CharField(max_length=40)
     numberPlate = models.CharField(max_length=30)
     mainOffices = models.CharField(max_length=30)
     # busImage = models.ImageField(null=True,upload_to='buses')
