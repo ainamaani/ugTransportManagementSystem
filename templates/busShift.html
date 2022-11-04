@@ -9,5 +9,20 @@
 <body>
     Hey
     {{shift.seats}}
+
+    <form action="{% url 'bookShift' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="seats" class="form-label d-none">Seats</label>
+            <input type="hidden" class="form-control" id="" 
+            aria-describedby="shiftseats" name="shift.seats" value="{{ shift.seats }}">
+        
+            <input type="hidden" class="form-control" id="" 
+            aria-describedby="shiftseats" name="shift_id" value="{{ shift_id }}">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Book shift</button>
+    </form>
+
 </body>
 </html>
