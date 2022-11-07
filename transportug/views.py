@@ -29,11 +29,8 @@ def busShift(request,id):
     })
 
 def bookShift(request):
-    seats = request.POST.get('shift.seats')
     busId = request.POST.get('shift_id')
-    seatss = int(seats)
     shiftSeats = Bus.objects.get(id=busId)
-    # shiftSeats = seatss - 1
     shiftSeats.seats = int(shiftSeats.seats) - 1
     shiftSeats.save()
     return render(request, 'booked.html')

@@ -13,15 +13,21 @@
     <form action="{% url 'bookShift' %}" method="post">
         {% csrf_token %}
         <div class="mb-3">
-            <label for="seats" class="form-label d-none">Seats</label>
+            <label for="seats" class="form-label d-none"></label>
             <input type="hidden" class="form-control" id="" 
             aria-describedby="shiftseats" name="shift.seats" value="{{ shift.seats }}">
         
             <input type="hidden" class="form-control" id="" 
             aria-describedby="shiftseats" name="shift_id" value="{{ shift_id }}">
         </div>
-        
-        <button type="submit" class="btn btn-primary">Book shift</button>
+        {% if shift.seats > 0 %}
+            <button type="submit" class="btn btn-primary">Book shift</button>
+        {% else %}
+            {% if shift.seats == 0 %}
+            <p>Sorry,seats done try the next shift</p>
+            {% endif %}
+        {% endif %}
+
     </form>
 
 </body>
