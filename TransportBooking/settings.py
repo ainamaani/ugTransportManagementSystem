@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'transportug'
+    'transportug',
 ]
+
+AUTH_USER_MODEL = 'transportug.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

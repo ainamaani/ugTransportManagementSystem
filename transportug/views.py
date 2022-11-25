@@ -30,7 +30,7 @@ def busShift(request,id):
 
 def bookShift(request):
     busId = request.POST.get('shift_id')
-    shiftSeats = Bus.objects.get(id=busId)
+    shiftSeats = Bus.objects.get(id=busId) #shiftSeats is just an object
     shiftSeats.seats = int(shiftSeats.seats) - 1
-    shiftSeats.save()
+    shiftSeats.save() #save the object
     return render(request, 'booked.html')
