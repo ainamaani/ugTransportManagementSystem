@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'transportug',
 ]
 
-AUTH_USER_MODEL = 'transportug.CustomUser'
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
