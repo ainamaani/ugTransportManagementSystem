@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser,User
 
 # Create your models here.
 
@@ -36,5 +36,11 @@ class Prices(models.Model):
     def __str__(self) -> str:
         return self.busCompany
     
+class Tickets(models.Model):
+    fromPlace = models.CharField(max_length=30)
+    toPlace = models.CharField(max_length=30)
 
-
+class BookedCustomers(models.Model):
+    customer = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    ticketNumber = models.ForeignKey()
+    
