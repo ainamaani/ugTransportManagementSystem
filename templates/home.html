@@ -8,12 +8,15 @@
     <title>Districts</title>
 </head>
 <body>
+    <a href="#" class="btn btn-primary">{{user.username}}</a>
     <div class="container mt-5 mb-5">
         <div class="row">
             {% for company in companies %}
                 <div class="col-md-3">
                     <div class="card mt-1">
                         <div class="align-items-center text-center">
+                            
+                            <br>
                             <h2>{{company.region}}</h2>
                             <a href="{% url 'region' company.region %}">{{company.region}}</a>
                         </div>

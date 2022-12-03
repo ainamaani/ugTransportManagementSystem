@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User,auth
 
 # Create your views here.
-
+#Registration
 def register(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
@@ -29,6 +29,7 @@ def register(request):
 
     return render(request,'register.html')
 
+#Login
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -42,24 +43,28 @@ def login(request):
             return redirect(request.build_absolute_uri('/ugtransport/login'))
     return render(request, 'login.html')
 
+#Displaying the districts
 def home(request):
     companies = BusCompany.objects.all().order_by('region')
     return render(request,'home.html',{
         'companies' : companies
     })
 
+#Display the buses in each region
 def district(request,region):
     buses = Bus.objects.filter(mainOffices=region)
     return render(request,'region.html',{
         'buses':buses
     })
 
+#Display bus details(shifts) with book button
 def company(request,company):
     companydetails = Bus.objects.filter(company=company)
     return render(request,'busCompany.html',{
         'buscompanies' : companydetails
     })
 
+#Booking page for a single shift
 def busShift(request,id):
     shift = Bus.objects.get(id=id)
     return render(request,'busShift.html',{
@@ -68,9 +73,19 @@ def busShift(request,id):
        
     })
 
+#On booking the shift
 def bookShift(request):
     busId = request.POST.get('shift_id')
     shiftSeats = Bus.objects.get(id=busId) #shiftSeats is just an object
     shiftSeats.seats = int(shiftSeats.seats) - 1
+    shiftSeats.totalTickets = int(shiftSeats.totalTickets) - 1
     shiftSeats.save() #save the object
+
+    userId = request.user.id
+    busBooked = shiftSeats.company
+    busNumberPlate = shiftSeats.numberPlate
+    seatNumber = shiftSeats.seats
+    
     return render(request, 'booked.html')
+
+# Getting the tickets

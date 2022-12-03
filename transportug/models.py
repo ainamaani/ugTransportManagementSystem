@@ -21,6 +21,7 @@ class Bus(models.Model):
     destination = models.ForeignKey(BusCompany,related_name='regions',on_delete=models.DO_NOTHING)
     travelTime = models.TimeField()
     seats = models.IntegerField()
+    totalTickets = models.CharField(max_length=2,default=64)
     status = models.CharField(max_length=30)
 
     def __str__(self) -> str:
@@ -35,12 +36,17 @@ class Prices(models.Model):
 
     def __str__(self) -> str:
         return self.busCompany
-    
-class Tickets(models.Model):
-    fromPlace = models.CharField(max_length=30)
-    toPlace = models.CharField(max_length=30)
+
 
 class BookedCustomers(models.Model):
     customer = models.ForeignKey(User,on_delete=models.DO_NOTHING)
-    ticketNumber = models.ForeignKey()
+    busBooked = models.ForeignKey(Bus,related_name='busBooked',on_delete=models.DO_NOTHING)
+    shiftBooked = models.DateTimeField()
+    ticketNumber = models.ForeignKey(Bus, related_name='ticketNos', on_delete=models.DO_NOTHING)
+    busNumberPlate = models.ForeignKey(Bus,related_name='numberPlates',on_delete=models.DO_NOTHING)
+    bookingDate = models.DateTimeField()
+    seatNumber = models.CharField(max_length=2,null=True)
+
+    def __str__(self) -> str:
+        return self.busBooked
     
