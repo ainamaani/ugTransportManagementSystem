@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
-from .models import Bus,BusCompany,Prices
+from .models import Bus,BusCompany,Prices,BookedCustomers
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
+from datetime import datetime
 
 # Create your views here.
 #Registration
@@ -82,10 +83,16 @@ def bookShift(request):
     shiftSeats.save() #save the object
 
     userId = request.user.id
+    user = User.objects.get(id=userId)
     busBooked = shiftSeats.company
     busNumberPlate = shiftSeats.numberPlate
     seatNumber = shiftSeats.seats
-    
+    totalTickets = shiftSeats.totalTickets
+    shiftBooked = shiftSeats.travelTime
+
+    customerBooking = BookedCustomers.objects.create(customer=user,busBooked=busBooked,ticketNumber=totalTickets,shiftBooked=shiftBooked,
+    busNumberPlate=busNumberPlate,bookingDate=datetime.now(),seatNumber=seatNumber)
+    customerBooking.save()
     return render(request, 'booked.html')
 
 # Getting the tickets
