@@ -41,7 +41,7 @@ class Prices(models.Model):
 class BookedCustomers(models.Model):
     customer = models.ForeignKey(User,on_delete=models.CASCADE)
     busBooked = models.CharField(max_length=30,null=True)
-    shiftBooked = models.DateTimeField(null=True)
+    shift = models.ForeignKey(Bus,on_delete=models.CASCADE,null=True)
     ticketNumber = models.CharField(max_length=30,null=True)
     busNumberPlate = models.CharField(max_length=30,null=True)
     bookingDate = models.DateTimeField(null=True)

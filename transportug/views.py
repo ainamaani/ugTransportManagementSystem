@@ -84,18 +84,22 @@ def bookShift(request):
 
     userId = request.user.id
     user = User.objects.get(id=userId)
+    shift = Bus.objects.get(id=busId)
     busBooked = shiftSeats.company
     busNumberPlate = shiftSeats.numberPlate
     seatNumber = shiftSeats.seats
     totalTickets = shiftSeats.totalTickets
-    
-    # shiftBooked = shiftSeats.travelTime
-    # shift = Bus.objects.get(travelTime=shiftBooked)
 
     customerBooking = BookedCustomers.objects.create(customer=user,busBooked=busBooked,
     ticketNumber=totalTickets,seatNumber=seatNumber,bookingDate=datetime.now(),
-    busNumberPlate=busNumberPlate)
+    busNumberPlate=busNumberPlate,shift=shift)
     customerBooking.save()
-    return render(request, 'booked.html')
+    return redirect(request.build_absolute_uri('/ugtransport/bookingdetails'))
 
 # Getting the tickets
+
+def bookDetails(request):
+    bookdetails = BookedCustomers.objects.filter(customer_id=request.user.id).select_related()
+    return render(request,'bookDetails.html',{
+        'details' : bookdetails
+    })
