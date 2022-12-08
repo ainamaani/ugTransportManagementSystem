@@ -88,10 +88,13 @@ def bookShift(request):
     busNumberPlate = shiftSeats.numberPlate
     seatNumber = shiftSeats.seats
     totalTickets = shiftSeats.totalTickets
-    shiftBooked = shiftSeats.travelTime
+    
+    # shiftBooked = shiftSeats.travelTime
+    # shift = Bus.objects.get(travelTime=shiftBooked)
 
-    customerBooking = BookedCustomers.objects.create(customer=user,busBooked=busBooked,ticketNumber=totalTickets,shiftBooked=shiftBooked,
-    busNumberPlate=busNumberPlate,bookingDate=datetime.now(),seatNumber=seatNumber)
+    customerBooking = BookedCustomers.objects.create(customer=user,busBooked=busBooked,
+    ticketNumber=totalTickets,seatNumber=seatNumber,bookingDate=datetime.now(),
+    busNumberPlate=busNumberPlate)
     customerBooking.save()
     return render(request, 'booked.html')
 

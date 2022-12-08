@@ -39,13 +39,13 @@ class Prices(models.Model):
 
 
 class BookedCustomers(models.Model):
-    customer = models.ForeignKey(User,on_delete=models.DO_NOTHING)
-    busBooked = models.ForeignKey(Bus,related_name='busBooked',on_delete=models.DO_NOTHING)
-    shiftBooked = models.DateTimeField()
-    ticketNumber = models.ForeignKey(Bus, related_name='ticketNos', on_delete=models.DO_NOTHING)
-    busNumberPlate = models.ForeignKey(Bus,related_name='numberPlates',on_delete=models.DO_NOTHING)
-    bookingDate = models.DateTimeField()
-    seatNumber = models.CharField(max_length=2,null=True)
+    customer = models.ForeignKey(User,on_delete=models.CASCADE)
+    busBooked = models.CharField(max_length=30,null=True)
+    shiftBooked = models.DateTimeField(null=True)
+    ticketNumber = models.CharField(max_length=30,null=True)
+    busNumberPlate = models.CharField(max_length=30,null=True)
+    bookingDate = models.DateTimeField(null=True)
+    seatNumber = models.CharField(max_length=6,null=True)
 
     def __str__(self) -> str:
         return self.busBooked
