@@ -19,6 +19,10 @@
         
             <input type="hidden" class="form-control" id="" 
             aria-describedby="shiftseats" name="shift_id" value="{{ shift_id }}">
+            <br>
+            <br>
+            Amount to pay: {{shift.price}}
+        
         </div>
         {% if shift.seats > 0 %}
             <button type="submit" class="btn btn-primary">Book shift</button>

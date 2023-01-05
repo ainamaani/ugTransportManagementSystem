@@ -23,6 +23,7 @@ class Bus(models.Model):
     seats = models.IntegerField()
     totalTickets = models.CharField(max_length=2,default=64)
     status = models.CharField(max_length=30)
+    price = models.IntegerField(null=True)
 
     def __str__(self) -> str:
         return self.mainOffices
